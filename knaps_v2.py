@@ -2,18 +2,21 @@ __author__ = 'bilge'
 
 import numpy as np
 import ast
-
 def total_value(items, max_weight):
     return  sum([x[2] for x in items]) if sum([x[1] for x in items]) < max_weight else 0
 
-cache = {}
+cache = []
+include = []
+include.append([])
 def solve(items, max_weight):
+    i=0
     if not items:
-        return ()
+        return []
     if (items,max_weight) not in cache:
         head = items[0]
         tail = items[1:]
-        include = (head,) + solve(tail, max_weight - head[1])
+        include[i].append(head)
+        include[i].append(solve(tail, max_weight - head[1]))
         dont_include = solve(tail, max_weight)
         if total_value(include, max_weight) > total_value(dont_include, max_weight):
             answer = include

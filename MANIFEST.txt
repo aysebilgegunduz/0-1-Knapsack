@@ -1,0 +1,13 @@
+[main]
+
+problem = ks
+
+
+files =
+    knaps.py
+    REPORT3.txt
+
+build =
+
+run =
+    python knaps.py %%f
